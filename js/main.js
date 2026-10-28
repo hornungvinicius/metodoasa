@@ -28,15 +28,44 @@
   const ease = 'power4.out';
   const shown = 'inset(0% 0% 0% 0%)';
 
-  // Headline do hero: máscara por linha
-  gsap.fromTo('.hero__title .line', { y: 0, yPercent: 110 }, { yPercent: 0, duration: 1.2, ease, stagger: 0.09, delay: 0.15 });
-
-  // Demais headlines: máscara por linha ao entrar na tela
-  document.querySelectorAll('.h2').forEach((h) => {
-    gsap.fromTo(h.querySelectorAll('.line'), { y: 0, yPercent: 110 }, {
-      yPercent: 0, duration: 1.1, ease, stagger: 0.08,
-      scrollTrigger: { trigger: h, start: 'top 85%' },
+  // Quebra a headline nas linhas reais (mede a largura atual) e envolve cada uma numa máscara.
+  // Ao terminar a animação o HTML original volta, então o texto continua refluindo no resize.
+  const splitLines = (el) => {
+    const original = el.innerHTML;
+    const words = [];
+    const walk = (node, cls) => {
+      node.childNodes.forEach((n) => {
+        if (n.nodeType === 3) {
+          n.textContent.split(/\s+/).filter(Boolean).forEach((w) => words.push({ w, cls }));
+        } else if (n.nodeType === 1) {
+          walk(n, n.className || cls);
+        }
+      });
+    };
+    walk(el, '');
+    el.innerHTML = words.map(({ w, cls }) => `<span class="w${cls ? ` ${cls}` : ''}">${w}</span>`).join(' ');
+    const lines = [];
+    let top = null;
+    el.querySelectorAll('.w').forEach((span) => {
+      if (span.offsetTop !== top) { lines.push([]); top = span.offsetTop; }
+      lines[lines.length - 1].push(span.outerHTML);
     });
+    el.innerHTML = lines.map((l) => `<span class="line-mask"><span class="line">${l.join(' ')}</span></span>`).join('');
+    el.dataset.split = '';
+    return { lines: el.querySelectorAll('.line'), restore: () => { el.innerHTML = original; } };
+  };
+
+  const revealHeading = (el, vars) => {
+    const { lines, restore } = splitLines(el);
+    gsap.fromTo(lines, { yPercent: 110 }, { yPercent: 0, duration: 1.15, ease, stagger: 0.08, onComplete: restore, ...vars });
+  };
+
+  document.fonts.ready.then(() => {
+    revealHeading(document.querySelector('.hero__title'), { delay: 0.1 });
+    document.querySelectorAll('.h2').forEach((h) => {
+      revealHeading(h, { scrollTrigger: { trigger: h, start: 'top 85%' } });
+    });
+    ScrollTrigger.refresh();
   });
 
   // Reveals com clip-path (de baixo para cima)
@@ -62,11 +91,11 @@
   });
 
   // Hero: celulares entram por máscara e depois fazem parallax
-  gsap.fromTo('.hero .phone, .hero .notif', { clipPath: 'inset(100% 0% 0% 0% round 46px)' }, {
-    clipPath: 'inset(0% 0% 0% 0% round 46px)', duration: 1.4, ease: 'expo.out', stagger: 0.12, delay: 0.3,
+  gsap.fromTo('.hero .phone, .hero .feed', { clipPath: 'inset(100% 0% 0% 0% round 46px)' }, {
+    clipPath: 'inset(0% 0% 0% 0% round 46px)', duration: 1.4, ease: 'expo.out', stagger: 0.15, delay: 0.3,
     onComplete() { gsap.set(this.targets(), { clearProps: 'clipPath' }); },
   });
-  gsap.from('.orbit', { rotate: -12, scale: 0.85, duration: 2, ease: 'expo.out', delay: 0.4 });
+  gsap.from('.hero .obj', { autoAlpha: 0, duration: 1.2, ease: 'power2.out', stagger: 0.12, delay: 0.7 });
 
   gsap.utils.toArray('[data-parallax]').forEach((el) => {
     gsap.fromTo(el, { '--py': '0px' }, {
