@@ -38,7 +38,7 @@ Uma operação pensada para atrair compradores, divulgar ofertas diariamente e g
 
 ## 05. Resultados reais
 **NÃO É SORTE. É ESTRATÉGIA.**
-**+R$ 10 MIL EM COMISSÕES NO 3º MÊS.**
+**+R$ 10 MIL EM COMISSÕES NO 1º MÊS.**
 Esse foi o resultado de uma operação construída com grupos de ofertas, tráfego pago e automação.
 Agora você pode conhecer a estratégia utilizada para alcançar esse resultado.
 [ESPAÇO PARA PRINTS REAIS DE RESULTADOS]

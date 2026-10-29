@@ -230,6 +230,8 @@ button { font: inherit; color: inherit; }
 .hero__grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
 .hero__desc { margin-top: 12px; max-width: 500px; color: var(--muted); }
 .lead__aside { color: var(--muted); }
+.hero__cta { position: relative; display: flex; justify-content: center; margin-top: 40px; }
+.results__cta { margin-top: 10px; }
 /* Quebra de linha fixa da headline, igual em todas as telas */
 .h1__line { display: block; white-space: nowrap; }
 
@@ -773,6 +775,8 @@ button { font: inherit; color: inherit; }
   .versus__card { padding: 22px; }
   .nope li { font-size: 18px; }
   .steps, .bonuses { grid-template-columns: 1fr; }
+  .hero__cta { margin-top: 28px; }
+  .hero__cta .btn, .results__cta .btn { width: 100%; }
   .step, .bonus { padding: 22px; }
   .hero__prints { height: 214px; }
   .hero__print--a { width: 66%; top: 34px; }
