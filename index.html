@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    try {
+      if (localStorage.getItem('asa-consent') === 'denied') {
+        gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      }
+    } catch (e) {}
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,6 +35,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <script>
+    document.documentElement.classList.add('js');
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.classList.add('motion');
       setTimeout(function () { if (!window.__motion) document.documentElement.classList.remove('motion'); }, 8000);
@@ -60,12 +70,14 @@
             <span class="pill"><i class="dot dot--ml"></i>Mercado Livre</span>
             <span class="pill">2026</span>
           </div>
-          <h1 class="h1">A nova era dos <span class="hl">afiliados</span> começou.</h1>
-          <p class="lead">Aprenda a gerar comissões com <b>Shopee</b> e <b>Mercado Livre</b> em 2026.</p>
+          <h1 class="h1">Fature <span class="hl">+R$300 por dia</span> como afiliado Shopee e Mercado Livre no 1º mês.</h1>
+          <p class="lead">A nova era dos afiliados começou <span class="lead__aside">(sem promessa de guru, é sério)</span>. É o jeito mais fácil e rápido de começar.</p>
           <p class="hero__desc">Descubra como transformar grupos de WhatsApp em uma máquina de comissões, utilizando tráfego pago e automação.</p>
-          <div class="hero__cta">
-            <a class="btn btn--pulse" href="#oferta">Quero começar agora <span class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-          </div>
+          <figure class="hero__prints">
+            <img class="hero__print hero__print--a" src="assets/resultados/shopee-abril.webp" alt="Painel da Shopee: R$ 64,5 mil de comissão estimada e R$ 673,5 mil em vendas em abril" width="680" height="372" decoding="async">
+            <img class="hero__print hero__print--b" src="assets/resultados/ml-90-dias.webp" alt="Painel do Mercado Livre: R$ 34.667,70 de ganho estimado nos últimos 90 dias" width="680" height="898" decoding="async">
+            <figcaption>Painéis reais de afiliado · Shopee e Mercado Livre</figcaption>
+          </figure>
           <div class="hero__note glass">
             <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
             <div>
@@ -319,6 +331,38 @@
       </div>
     </section>
 
+    <!-- BÔNUS -->
+    <section class="section" id="bonus">
+      <div class="wrap">
+        <header class="head">
+          <span class="pill" data-reveal>Bônus</span>
+          <h2 class="h2">Bônus exclusivos do <span class="hl">Método ASA</span></h2>
+        </header>
+        <ul class="bonuses">
+          <li class="bonus glass" data-card>
+            <div class="step__top"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m8.5 12.5 2 2 4-4"/></svg></span><span class="step__n">Bônus 01</span></div>
+            <h3 class="card-t">Checklist de Configuração</h3>
+            <p>Passo a passo para deixar sua estrutura pronta para começar.</p>
+          </li>
+          <li class="bonus glass" data-card>
+            <div class="step__top"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span><span class="step__n">Bônus 02</span></div>
+            <h3 class="card-t">Top 3 Nichos que Mais Vendem</h3>
+            <p>Conheça os nichos e os tipos de oferta para trabalhar em cada um.</p>
+          </li>
+          <li class="bonus glass" data-card>
+            <div class="step__top"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="step__n">Bônus 03</span></div>
+            <h3 class="card-t">Seleção de Produtos Mais Vendidos</h3>
+            <p>Referências de produtos da Shopee e do Mercado Livre para orientar suas ofertas.</p>
+          </li>
+          <li class="bonus glass" data-card>
+            <div class="step__top"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg></span><span class="step__n">Bônus 04</span></div>
+            <h3 class="card-t">Planilha de Resultados</h3>
+            <p>Acompanhe investimentos, comissões e lucro em um só lugar.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <!-- 07. OFERTA FINAL -->
     <section class="section offer" id="oferta">
       <div class="wrap">
@@ -340,6 +384,7 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Estratégias de escala</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Grupo de networking</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Suporte para implementação</li>
+              <li class="checks__bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>4 bônus exclusivos</li>
             </ul>
             <div class="price__box">
               <p class="price__from">De <s>R$ 159,00</s> por</p>
@@ -347,6 +392,20 @@
             </div>
             <a class="btn btn--block btn--pulse" href="https://pay.kiwify.com.br/nqQ2Emb" rel="noopener">Quero garantir meu acesso <span class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
             <p class="price__note">Acesso imediato após a confirmação do pagamento.</p>
+          </div>
+          <div class="guarantee glass" data-card>
+            <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+              <defs><path id="seal-ring" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
+              <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+              <circle cx="60" cy="60" r="36" fill="rgba(255,77,31,.12)" stroke="currentColor" stroke-opacity=".6"/>
+              <text class="seal__ring"><textPath href="#seal-ring" startOffset="0" textLength="285" lengthAdjust="spacingAndGlyphs">garantia incondicional · 7 dias · garantia incondicional · 7 dias ·</textPath></text>
+              <text class="seal__n" x="60" y="64" text-anchor="middle">7</text>
+              <text class="seal__d" x="60" y="80" text-anchor="middle">dias</text>
+            </svg>
+            <div>
+              <p class="card-t">Garantia incondicional de 7 dias</p>
+              <p>Se em até 7 dias você sentir que o Método ASA não é para você, é só pedir o reembolso. Sem perguntas.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -394,9 +453,22 @@
     <p class="footer__giant" aria-hidden="true">Método ASA</p>
     <div class="wrap footer__bottom">
       <span>© 2026 — Todos os direitos reservados.</span>
+      <nav class="footer__legal" aria-label="Documentos legais">
+        <a href="politica-de-privacidade.html">Política de privacidade</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+        <button type="button" data-cookie-open>Preferências de cookies</button>
+      </nav>
       <a href="https://www.afiliadosemaparecer.com.br">www.afiliadosemaparecer.com.br</a>
     </div>
   </footer>
+
+  <div class="cookie glass" role="region" aria-label="Aviso de cookies" data-cookie hidden>
+    <p>Usamos cookies para entender como a página é usada e medir nossos anúncios. Saiba mais na <a href="politica-de-privacidade.html#cookies">Política de privacidade</a>.</p>
+    <div class="cookie__actions">
+      <button type="button" class="cookie__btn" data-cookie-deny>Recusar</button>
+      <button type="button" class="cookie__btn cookie__btn--accept" data-cookie-accept>Aceitar</button>
+    </div>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>

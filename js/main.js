@@ -2,11 +2,35 @@
   const root = document.documentElement;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Nav ganha fundo ao rolar
+  // Nav ganha fundo ao rolar; o botão só aparece depois da primeira dobra
   const nav = document.querySelector('.nav');
-  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+  const hero = document.querySelector('.hero');
+  const onScroll = () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 24);
+    nav.classList.toggle('is-past-hero', !hero || window.scrollY > hero.offsetHeight - nav.offsetHeight);
+  };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Aviso de cookies: guarda a escolha e repassa ao GTM (Consent Mode + evento no dataLayer)
+  const cookie = document.querySelector('[data-cookie]');
+  if (cookie) {
+    const KEY = 'asa-consent';
+    const read = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    const choose = (value) => {
+      try { localStorage.setItem(KEY, value); } catch (e) { /* navegação privada: vale só nesta visita */ }
+      const state = value === 'granted' ? 'granted' : 'denied';
+      window.dataLayer = window.dataLayer || [];
+      // O Consent Mode só reconhece o objeto arguments, como o gtag() oficial empurra
+      (function gtag() { window.dataLayer.push(arguments); })('consent', 'update', { ad_storage: state, analytics_storage: state, ad_user_data: state, ad_personalization: state });
+      window.dataLayer.push({ event: `cookie_consent_${state}` });
+      cookie.hidden = true;
+    };
+    if (!read()) cookie.hidden = false;
+    cookie.querySelector('[data-cookie-accept]').addEventListener('click', () => choose('granted'));
+    cookie.querySelector('[data-cookie-deny]').addEventListener('click', () => choose('denied'));
+    document.querySelectorAll('[data-cookie-open]').forEach((b) => b.addEventListener('click', () => { cookie.hidden = false; }));
+  }
 
   // Glow interno dos cards de vidro segue o cursor
   if (window.matchMedia('(pointer: fine)').matches) {

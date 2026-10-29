@@ -8,6 +8,14 @@ Página estática: `index.html` + `css/styles.css` + `js/main.js` (GSAP 3.12.5 v
 
 Para ver localmente: `python3 -m http.server` na raiz e abrir `http://localhost:8000`.
 
+## Páginas
+- `index.html`: landing page.
+- `politica-de-privacidade.html` e `termos-de-uso.html`: textos genéricos em nome do Método ASA, sem CNPJ. Revise com um advogado e complete com os dados do responsável antes de escalar.
+- Aviso de cookies: guarda a escolha em `localStorage` (`asa-consent`), envia `consent update` do Google Consent Mode e os eventos `cookie_consent_granted` / `cookie_consent_denied` no `dataLayer`. Configure as tags do GTM (Meta, GA4, Ads) para respeitar o consentimento.
+
+## Imagens para a Kiwify
+Em `kiwify/` (fora do site): cards da área de membros (`modulos/`, 1024×1536, 2:3) e banner do slide (`banner/`, desktop 2000×590 e mobile 768×432, com e sem texto).
+
 ## Build e deploy na Hostinger
 ```
 npm install

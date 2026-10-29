@@ -27,20 +27,22 @@ const jsName = `main.${hash(js)}.js`;
 await writeFile(join(dist, 'js', jsName), js);
 await cp(join(root, 'js/vendor'), join(dist, 'js/vendor'), { recursive: true });
 
-let html = await readFile(join(root, 'index.html'), 'utf8');
-html = html
-  .replace('<link rel="stylesheet" href="css/styles.css">', `<style>${css}</style>`)
-  .replace('src="js/main.js"', `src="js/${jsName}"`);
-if (!html.includes('<style>') || !html.includes(jsName)) throw new Error('index.html não tem as referências esperadas de CSS/JS');
-html = await minifyHtml(html, {
-  collapseWhitespace: true,
-  conservativeCollapse: true,
-  removeComments: true,
-  minifyJS: true,
-  removeRedundantAttributes: true,
-  useShortDoctype: true,
-});
-await writeFile(join(dist, 'index.html'), html);
+const pages = (await readdir(root)).filter((f) => f.endsWith('.html'));
+for (const page of pages) {
+  let html = await readFile(join(root, page), 'utf8');
+  html = html.replace('<link rel="stylesheet" href="css/styles.css">', `<style>${css}</style>`);
+  if (!html.includes('<style>')) throw new Error(`${page} não tem a referência esperada de CSS`);
+  if (html.includes('src="js/main.js"')) html = html.replace('src="js/main.js"', `src="js/${jsName}"`);
+  html = await minifyHtml(html, {
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+    removeComments: true,
+    minifyJS: true,
+    removeRedundantAttributes: true,
+    useShortDoctype: true,
+  });
+  await writeFile(join(dist, page), html);
+}
 
 for (const dir of ['assets', 'fonts']) {
   await cp(join(root, dir), join(dist, dir), { recursive: true, filter: (src) => !src.endsWith('.gitkeep') });

@@ -2,8 +2,8 @@
 www.afiliadosemaparecer.com.br
 
 ## 01. Primeira dobra — a promessa
-**A NOVA ERA DOS AFILIADOS COMEÇOU.**
-Aprenda a gerar comissões com Shopee e Mercado Livre em 2026.
+**Fature +R$300 por dia como afiliado Shopee e Mercado Livre no 1º mês.**
+A nova era dos afiliados começou (sem promessa de guru, é sério). É o jeito mais fácil e rápido de começar.
 Descubra como transformar grupos de WhatsApp em uma máquina de comissões, utilizando tráfego pago e automação.
 SEM APARECER • SEM SEGUIDORES • OFERTAS AUTOMÁTICAS
 **SUA MÁQUINA DE VENDAS ATIVA NO MESMO DIA.**
@@ -59,6 +59,15 @@ MÉTODO ASA
 DE R$ XXX POR R$ XX,XX
 [QUERO GARANTIR MEU ACESSO]
 Acesso imediato após a confirmação do pagamento.
+
+## Bônus exclusivos do Método ASA
+- **Checklist de Configuração:** passo a passo para deixar sua estrutura pronta para começar.
+- **Top 3 Nichos que Mais Vendem:** conheça os nichos e os tipos de oferta para trabalhar em cada um.
+- **Seleção de Produtos Mais Vendidos:** referências de produtos da Shopee e do Mercado Livre para orientar suas ofertas.
+- **Planilha de Resultados:** acompanhe investimentos, comissões e lucro em um só lugar.
+
+## Garantia
+Garantia incondicional de 7 dias.
 
 ## 08. Dúvidas frequentes
 - **Preciso ter experiência como afiliado?** Não. O Método ASA ensina desde os primeiros passos.
