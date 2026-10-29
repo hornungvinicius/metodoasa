@@ -2,11 +2,20 @@
 
 Página estática: `index.html` + `css/styles.css` + `js/main.js` (GSAP 3.12.5 via cdnjs).
 
-- Fonte: RBNo3.1 (René Bieder), servida de `fonts/` em woff2. **É uma fonte comercial; o arquivo original só permite preview/print. Publicar exige licença web.**
+- Fonte: Oxanium (licença OFL, uso livre), variável 400–800, servida de `fonts/oxanium.woff2` (subset latin, 14 KB).
 - Paleta: laranja-avermelhado `#FF4D1F` como destaque, amarelo `#FFC21A` nos detalhes.
 - Objetos 3D de vidro (`assets/3d/`) e pôsteres do "O que está incluso" (`assets/modulos/`) gerados no Freepik/Magnific. Para usar as logos oficiais da Shopee e do Mercado Livre, basta trocar os `<img class="obj ...">` do hero.
 
 Para ver localmente: `python3 -m http.server` na raiz e abrir `http://localhost:8000`.
+
+## Build e deploy na Hostinger
+```
+npm install
+npm run build
+```
+Gera `dist/` e `metodoasa-site.zip`. O build embute o CSS no HTML, minifica HTML e JS (com hash no nome do JS para cache), copia fontes, imagens, `.htaccess`, `robots.txt` e `sitemap.xml`.
+
+Na Hostinger: hPanel → Sites → Gerenciador de Arquivos → `public_html` → Upload do `metodoasa-site.zip` → botão direito → Extrair. O `index.html` precisa ficar direto em `public_html`. Depois ative o SSL e a opção **Forçar HTTPS** no hPanel. O `.htaccess` já liga compressão e cache.
 
 ## Deploy na Vercel
 Site estático, sem build. Na Vercel: *Add New → Project*, importe o repositório, deixe *Framework Preset* em **Other**, sem comando de build e com *Output Directory* vazio (raiz). Se o repositório só tiver esta branch, defina-a como *Production Branch* em *Settings → Git*.

@@ -47,70 +47,87 @@
     update();
   });
 
-  if (reduce || !window.gsap || !window.ScrollTrigger) {
+  if (reduce) {
     root.classList.remove('motion');
     return;
   }
 
-  gsap.registerPlugin(ScrollTrigger);
-  const ease = 'power2.out';
-  const fadeIn = { opacity: 1, y: 0, duration: 0.8, ease };
-
-  // Hero: entrada única e discreta
-  gsap.fromTo('.hero .h1, .hero [data-reveal]', { opacity: 0, y: 14 }, { ...fadeIn, stagger: 0.07, delay: 0.1 });
-  gsap.from('.hero .device, .hero .feed, .hero .obj', { opacity: 0, y: 20, duration: 1, ease, stagger: 0.06, delay: 0.25 });
-
-  // Demais blocos: aparecem uma vez ao entrar na tela
-  ScrollTrigger.batch('[data-reveal], [data-card], .h2', {
-    start: 'top 90%',
-    once: true,
-    onEnter: (batch) => gsap.fromTo(batch.filter((el) => !el.closest('.hero')), { opacity: 0, y: 14 }, { ...fadeIn, stagger: 0.06 }),
+  // GSAP só entra depois que a página terminou de carregar: o primeiro paint e o LCP
+  // não esperam pelas animações.
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
   });
+  const start = () => loadScript('js/vendor/gsap.min.js')
+    .then(() => loadScript('js/vendor/ScrollTrigger.min.js'))
+    .then(initMotion)
+    .catch(() => root.classList.remove('motion'));
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start, { once: true });
 
-  // Parallax leve
-  gsap.utils.toArray('[data-parallax]').forEach((el) => {
-    gsap.fromTo(el, { '--py': '0px' }, {
-      '--py': `${el.dataset.parallax}px`,
-      ease: 'none',
-      scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
-    });
-  });
+  function initMotion() {
+    // O fallback do <head> já pode ter revelado tudo; nesse caso não anima mais nada
+    if (!root.classList.contains('motion')) return;
+    window.__motion = true;
+    gsap.registerPlugin(ScrollTrigger);
+    const ease = 'power2.out';
+    const fadeIn = { opacity: 1, y: 0, duration: 0.8, ease };
 
-  // Riscos sobre o que o aluno não precisa fazer
-  gsap.utils.toArray('.strike').forEach((el, i) => {
-    gsap.fromTo(el, { '--strike': 0 }, {
-      '--strike': 1, duration: 0.6, ease: 'power2.inOut', delay: 0.3 + i * 0.1,
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    // Demais blocos: aparecem uma vez ao entrar na tela
+    ScrollTrigger.batch('[data-reveal], [data-card], .h2', {
+      start: 'top 90%',
+      once: true,
+      onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, y: 14 }, { ...fadeIn, stagger: 0.06 }),
     });
-  });
 
-  // Contador do resultado
-  const counter = document.querySelector('[data-count]');
-  if (counter) {
-    const target = { v: 0 };
-    gsap.to(target, {
-      v: Number(counter.dataset.count), duration: 1.4, ease: 'power2.out',
-      onUpdate: () => { counter.textContent = Math.round(target.v); },
-      scrollTrigger: { trigger: counter, start: 'top 85%', once: true },
+    // Parallax leve
+    gsap.utils.toArray('[data-parallax]').forEach((el) => {
+      gsap.fromTo(el, { '--py': '0px' }, {
+        '--py': `${el.dataset.parallax}px`,
+        ease: 'none',
+        scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+      });
     });
-  }
 
-  // Feed automático: mensagens chegando em loop
-  const feed = gsap.utils.toArray('[data-feed]');
-  if (feed.length) {
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.5, paused: true });
-    tl.set(feed, { opacity: 0, y: 8 });
-    feed.forEach((m, i) => {
-      tl.to(m, { opacity: 1, y: 0, duration: 0.5, ease }, i * 0.9);
+    // Riscos sobre o que o aluno não precisa fazer
+    gsap.utils.toArray('.strike').forEach((el, i) => {
+      gsap.fromTo(el, { '--strike': 0 }, {
+        '--strike': 1, duration: 0.6, ease: 'power2.inOut', delay: 0.3 + i * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
     });
-    tl.to({}, { duration: 2 });
-    ScrollTrigger.create({
-      trigger: '.diff__visual', start: 'top 80%', end: 'bottom top',
-      onToggle: (self) => (self.isActive ? tl.play() : tl.pause()),
-    });
-    gsap.fromTo('.clock__arc', { strokeDashoffset: 1232 }, {
-      strokeDashoffset: 400, ease: 'none',
-      scrollTrigger: { trigger: '.diff', start: 'top bottom', end: 'bottom top', scrub: 0.6 },
-    });
+
+    // Contador do resultado
+    const counter = document.querySelector('[data-count]');
+    if (counter) {
+      const target = { v: 0 };
+      gsap.to(target, {
+        v: Number(counter.dataset.count), duration: 1.4, ease: 'power2.out',
+        onUpdate: () => { counter.textContent = Math.round(target.v); },
+        scrollTrigger: { trigger: counter, start: 'top 85%', once: true },
+      });
+    }
+
+    // Feed automático: mensagens chegando em loop
+    const feed = gsap.utils.toArray('[data-feed]');
+    if (feed.length) {
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.5, paused: true });
+      tl.set(feed, { opacity: 0, y: 8 });
+      feed.forEach((m, i) => {
+        tl.to(m, { opacity: 1, y: 0, duration: 0.5, ease }, i * 0.9);
+      });
+      tl.to({}, { duration: 2 });
+      ScrollTrigger.create({
+        trigger: '.diff__visual', start: 'top 80%', end: 'bottom top',
+        onToggle: (self) => (self.isActive ? tl.play() : tl.pause()),
+      });
+      gsap.fromTo('.clock__arc', { strokeDashoffset: 1232 }, {
+        strokeDashoffset: 400, ease: 'none',
+        scrollTrigger: { trigger: '.diff', start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+      });
+    }
   }
 })();
