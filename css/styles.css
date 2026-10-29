@@ -230,7 +230,8 @@ button { font: inherit; color: inherit; }
 .hero__grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
 .hero__desc { margin-top: 12px; max-width: 500px; color: var(--muted); }
 .lead__aside { color: var(--muted); }
-.h1 .hl { white-space: nowrap; }
+/* Quebra de linha fixa da headline, igual em todas as telas */
+.h1__line { display: block; white-space: nowrap; }
 
 /* Prints reais no lugar do botão da primeira dobra */
 .hero__prints { position: relative; height: 236px; max-width: 470px; margin: 30px 0 0; }
@@ -749,7 +750,7 @@ button { font: inherit; color: inherit; }
   .nav { padding: 12px 0; }
   .wordmark { font-size: 18px; }
   .hero { padding: 100px 0 90px; }
-  .h1 { font-size: clamp(25px, 7vw, 30px); }
+  .h1 { font-size: clamp(23px, 7.2vw, 30px); }
   .lead { font-size: 17px; }
   .hero__visual { height: 500px; }
   .device.device--lock { width: 220px; margin-left: -110px; }

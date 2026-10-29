@@ -112,7 +112,10 @@
       gsap.fromTo(el, { '--py': '0px' }, {
         '--py': `${el.dataset.parallax}px`,
         ease: 'none',
-        scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+        // No hero o parallax começa no scroll 0; senão o elemento pula quando o GSAP carrega
+        scrollTrigger: el.closest('.hero')
+          ? { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 }
+          : { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
       });
     });
 
