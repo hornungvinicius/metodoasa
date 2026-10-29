@@ -234,14 +234,20 @@ button { font: inherit; color: inherit; }
 
 /* Prints reais no lugar do botão da primeira dobra */
 .hero__prints { position: relative; height: 236px; max-width: 470px; margin: 30px 0 0; }
+/* Moldura com borda em gradiente girando + sombra com brilho laranja */
+@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .hero__print {
   position: absolute;
-  border-radius: 12px;
-  background: #fff;
-  object-fit: cover;
-  object-position: top;
-  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .12);
+  display: block;
+  padding: 2px;
+  border-radius: 14px;
+  background: conic-gradient(from var(--spin), rgba(var(--accent-rgb), .15) 0deg, var(--accent) 70deg, var(--accent-2) 110deg, rgba(var(--accent-rgb), .15) 180deg, rgba(var(--accent-rgb), .15) 250deg, var(--accent) 320deg, rgba(var(--accent-rgb), .15) 360deg);
+  box-shadow: 0 26px 50px -20px rgba(0, 0, 0, .95), 0 14px 40px -12px rgba(var(--accent-rgb), .45);
+  animation: spin 5s linear infinite;
 }
+.hero__print--b { animation-delay: -2.5s; }
+.hero__print img { width: 100%; height: 100%; border-radius: 12px; background: #fff; object-fit: cover; object-position: top; }
+@keyframes spin { to { --spin: 360deg; } }
 .hero__print--a { z-index: 2; left: 0; top: 30px; width: 300px; height: auto; rotate: -3deg; }
 .hero__print--b { z-index: 1; left: 268px; top: 0; width: 180px; height: 200px; rotate: 4deg; }
 .hero__prints figcaption { position: absolute; left: 0; bottom: 0; font-size: 12.5px; color: var(--dim); }
@@ -797,6 +803,6 @@ button { font: inherit; color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   html, .carousel__track { scroll-behavior: auto; }
-  .marquee, .btn--pulse::after, .obj, .offer__obj, .feed__track { animation: none; }
+  .marquee, .btn--pulse::after, .obj, .offer__obj, .feed__track, .hero__print { animation: none; }
   .btn, .btn__arrow, .glass, .glass::before, .module, .module img { transition: none; }
 }
