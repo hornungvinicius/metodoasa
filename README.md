@@ -17,4 +17,4 @@ Site estático, sem build. Na Vercel: *Add New → Project*, importe o repositó
 ## Assets
 Nenhum placeholder restante. Prints reais em `assets/resultados/`, moldura de celular (mockup Freepik "Modern White Smartphone Mockup on Transparent Background", tela recortada) em `assets/phone-frame.webp`.
 
-Preço segue como `R$ XXX` / `R$ XX,XX` até definição. O botão de compra (`#oferta .btn--block`) está com `href="#"`: trocar pelo link do checkout.
+Preço: de R$ 159,00 por R$ 47,90. Checkout Kiwify no botão da oferta (`#oferta .btn--block`); os demais CTAs rolam até a oferta. Google Tag Manager: `GTM-5FKNZRK3` (no `<head>` e o `noscript` logo após o `<body>`).
