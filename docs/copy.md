@@ -2,7 +2,7 @@
 www.afiliadosemaparecer.com.br
 
 ## 01. Primeira dobra — a promessa
-**Fature +R$300 por dia como afiliado Shopee e Mercado Livre no 1º mês.**
+**Transforme grupos de WhatsApp em uma máquina de comissões na Shopee e Mercado Livre.**
 A nova era dos afiliados começou (sem promessa de guru, é sério). É o jeito mais fácil e rápido de começar.
 Descubra como transformar grupos de WhatsApp em uma máquina de comissões, utilizando tráfego pago e automação.
 SEM APARECER • SEM SEGUIDORES • OFERTAS AUTOMÁTICAS
