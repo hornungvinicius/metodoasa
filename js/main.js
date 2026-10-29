@@ -8,9 +8,9 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Glow interno dos cards segue o cursor
+  // Glow interno dos cards de vidro segue o cursor
   if (window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.card').forEach((card) => {
+    document.querySelectorAll('.glass').forEach((card) => {
       card.addEventListener('pointermove', (e) => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -18,6 +18,34 @@
       });
     });
   }
+
+  // Carrossel de prints: setas, barra de progresso e arraste nativo
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const track = carousel.querySelector('.carousel__track');
+    const prev = carousel.querySelector('[data-prev]');
+    const next = carousel.querySelector('[data-next]');
+    const bar = carousel.parentElement.querySelector('.carousel__bar');
+    const step = () => {
+      const item = track.querySelector('.carousel__item');
+      return item ? item.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 16) : track.clientWidth;
+    };
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const visible = track.clientWidth / track.scrollWidth;
+      const progress = max > 0 ? track.scrollLeft / max : 0;
+      if (bar) {
+        bar.style.setProperty('--bar-w', `${visible * 100}%`);
+        bar.style.setProperty('--bar-x', `${progress * (1 / visible - 1) * 100}%`);
+      }
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
+    next.addEventListener('click', () => track.scrollBy({ left: step() }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
 
   if (reduce || !window.gsap || !window.ScrollTrigger) {
     root.classList.remove('motion');
@@ -57,11 +85,11 @@
 
   const revealHeading = (el, vars) => {
     const { lines, restore } = splitLines(el);
-    gsap.fromTo(lines, { yPercent: 110 }, { yPercent: 0, duration: 1.15, ease, stagger: 0.08, onComplete: restore, ...vars });
+    gsap.fromTo(lines, { yPercent: 110 }, { yPercent: 0, duration: 1.1, ease, stagger: 0.08, onComplete: restore, ...vars });
   };
 
   document.fonts.ready.then(() => {
-    revealHeading(document.querySelector('.hero__title'), { delay: 0.1 });
+    revealHeading(document.querySelector('.h1'), { delay: 0.1 });
     document.querySelectorAll('.h2').forEach((h) => {
       revealHeading(h, { scrollTrigger: { trigger: h, start: 'top 85%' } });
     });
@@ -69,28 +97,27 @@
   });
 
   // Reveals com clip-path (de baixo para cima)
-  const heroReveals = document.querySelectorAll('.hero [data-reveal]');
-  gsap.fromTo(heroReveals, { clipPath: 'inset(0% 0% 100% 0%)', y: 24 }, {
+  gsap.fromTo('.hero [data-reveal]', { clipPath: 'inset(0% 0% 100% 0%)', y: 20 }, {
     clipPath: shown, y: 0, duration: 1, ease, stagger: 0.08, delay: 0.45,
   });
-
   gsap.utils.toArray('[data-reveal]').forEach((el) => {
     if (el.closest('.hero')) return;
-    gsap.fromTo(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 24 }, {
+    gsap.fromTo(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 20 }, {
       clipPath: shown, y: 0, duration: 1, ease,
       scrollTrigger: { trigger: el, start: 'top 90%' },
     });
   });
 
-  // Cards: wipe diagonal em grupo
+  // Cards e pôsteres: wipe em grupo
   ScrollTrigger.batch('[data-card]', {
     start: 'top 88%',
     onEnter: (batch) => gsap.fromTo(batch,
-      { clipPath: 'inset(0% 0% 100% 0% round 22px)' },
-      { clipPath: 'inset(0% 0% 0% 0% round 22px)', duration: 1.1, ease: 'expo.out', stagger: 0.1 }),
+      { clipPath: 'inset(0% 0% 100% 0% round 20px)' },
+      { clipPath: 'inset(0% 0% 0% 0% round 20px)', duration: 1.1, ease: 'expo.out', stagger: 0.08,
+        onComplete() { gsap.set(this.targets(), { clipPath: 'none' }); } }),
   });
 
-  // Hero: celulares entram por máscara e depois fazem parallax
+  // Hero: celular e notificações entram por máscara
   gsap.fromTo('.hero .device, .hero .feed', { clipPath: 'inset(100% 0% 0% 0% round 46px)' }, {
     clipPath: 'inset(0% 0% 0% 0% round 46px)', duration: 1.4, ease: 'expo.out', stagger: 0.15, delay: 0.3,
     onComplete() { gsap.set(this.targets(), { clearProps: 'clipPath' }); },
@@ -105,26 +132,12 @@
     });
   });
 
-  // Texto gigante de fundo desliza na horizontal
-  gsap.utils.toArray('[data-drift]').forEach((el) => {
-    gsap.fromTo(el, { xPercent: 8 }, {
-      xPercent: -8, ease: 'none',
-      scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
-    });
-  });
-
   // Riscos sobre o que o aluno não precisa fazer
   gsap.utils.toArray('.strike').forEach((el, i) => {
     gsap.fromTo(el, { '--strike': 0 }, {
-      '--strike': 1, duration: 0.8, ease: 'power3.inOut', delay: 0.3 + i * 0.12,
+      '--strike': 1, duration: 0.7, ease: 'power3.inOut', delay: 0.4 + i * 0.12,
       scrollTrigger: { trigger: el, start: 'top 85%' },
     });
-  });
-
-  // Linha da timeline cresce com o scroll
-  gsap.fromTo('.steps__line', { '--progress': 0 }, {
-    '--progress': 1, ease: 'none',
-    scrollTrigger: { trigger: '.steps', start: 'top 70%', end: 'bottom 60%', scrub: true },
   });
 
   // Contador do resultado
@@ -137,8 +150,8 @@
       scrollTrigger: { trigger: counter, start: 'top 85%' },
     });
   }
-  gsap.fromTo('.big-result__n, .big-result__t', { clipPath: 'inset(0% 100% 0% 0%)' }, {
-    clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'expo.out', stagger: 0.12,
+  gsap.fromTo('.big-n, .big-t', { clipPath: 'inset(0% 100% 0% 0%)' }, {
+    clipPath: shown, duration: 1.2, ease: 'expo.out', stagger: 0.12,
     scrollTrigger: { trigger: '.results__copy', start: 'top 80%' },
   });
 
