@@ -91,7 +91,7 @@
   });
 
   // Hero: celulares entram por máscara e depois fazem parallax
-  gsap.fromTo('.hero .phone, .hero .feed', { clipPath: 'inset(100% 0% 0% 0% round 46px)' }, {
+  gsap.fromTo('.hero .device, .hero .feed', { clipPath: 'inset(100% 0% 0% 0% round 46px)' }, {
     clipPath: 'inset(0% 0% 0% 0% round 46px)', duration: 1.4, ease: 'expo.out', stagger: 0.15, delay: 0.3,
     onComplete() { gsap.set(this.targets(), { clearProps: 'clipPath' }); },
   });
@@ -137,17 +137,16 @@
       scrollTrigger: { trigger: counter, start: 'top 85%' },
     });
   }
-  gsap.fromTo('.big-result__n', { clipPath: 'inset(0% 50% 0% 50%)' }, {
-    clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.out',
-    scrollTrigger: { trigger: '.big-result', start: 'top 80%' },
+  gsap.fromTo('.big-result__n, .big-result__t', { clipPath: 'inset(0% 100% 0% 0%)' }, {
+    clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'expo.out', stagger: 0.12,
+    scrollTrigger: { trigger: '.results__copy', start: 'top 80%' },
   });
 
-  // Prints abrem em leque
-  gsap.fromTo('[data-print]', { clipPath: 'inset(0% 0% 100% 0% round 22px)', rotate: 0, x: 0 }, {
-    clipPath: 'inset(0% 0% 0% 0% round 22px)',
-    rotate: (i) => (i - 2) * 12, x: (i) => (i - 2) * 10,
-    duration: 1.2, ease: 'expo.out', stagger: 0.06,
-    scrollTrigger: { trigger: '.prints', start: 'top 80%' },
+  // Prova: celular com o print e o card flutuante sobem por máscara
+  gsap.fromTo('.proof > *', { clipPath: 'inset(100% 0% 0% 0% round 24px)' }, {
+    clipPath: 'inset(0% 0% 0% 0% round 24px)', duration: 1.3, ease: 'expo.out', stagger: 0.15,
+    scrollTrigger: { trigger: '.proof', start: 'top 80%' },
+    onComplete() { gsap.set(this.targets(), { clearProps: 'clipPath' }); },
   });
 
   // Feed automático: mensagens chegando em loop

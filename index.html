@@ -52,11 +52,12 @@
         <div class="hero__visual" aria-hidden="true">
           <div class="hero__halo"></div>
           <img class="obj obj--coins" src="assets/3d/coins.webp" alt="" width="883" height="900" data-parallax="-160">
-          <div class="phone phone--lock" data-parallax="-60">
-            <div class="phone__screen lock">
+          <div class="device device--lock" data-parallax="-60">
+            <div class="device__screen lock">
               <p class="lock__date">terça-feira, 28 de outubro</p>
               <p class="lock__time">09:41</p>
             </div>
+            <img class="device__frame" src="assets/phone-frame.webp" alt="" width="856" height="1800">
           </div>
           <img class="obj obj--chat" src="assets/3d/chat.webp" alt="" width="900" height="856" data-parallax="-40">
           <div class="feed" data-parallax="-90">
@@ -86,7 +87,7 @@
         <div class="marquee marquee--rev"><span>Shopee • Mercado Livre • WhatsApp • Tráfego pago • Automação • </span><span>Shopee • Mercado Livre • WhatsApp • Tráfego pago • Automação • </span></div>
       </div>
       <div class="ribbon__band ribbon__band--accent" aria-hidden="true">
-        <div class="marquee"><span>Sem aparecer • Sem seguidores • Ofertas automáticas • </span><span>Sem aparecer • Sem seguidores • Ofertas automáticas • </span></div>
+        <div class="marquee"><span>Sem aparecer <i>•</i> Sem seguidores <i>•</i> Ofertas automáticas <i>•</i> </span><span>Sem aparecer <i>•</i> Sem seguidores <i>•</i> Ofertas automáticas <i>•</i> </span></div>
       </div>
     </div>
 
@@ -104,11 +105,9 @@
             <p class="giant-num">+25</p>
             <h3 class="h3">Aulas práticas</h3>
             <p>Do absoluto zero à criação, automação e escala da sua operação.</p>
-            <div class="stack" aria-hidden="true">
-              <div class="asset stack__item stack__item--3">assets/mockup-aula-03.png</div>
-              <div class="asset stack__item stack__item--2">assets/mockup-aula-02.png</div>
-              <div class="asset stack__item stack__item--1">assets/mockup-area-membros.png</div>
-            </div>
+            <ol class="path" aria-label="Do zero à escala">
+              <li>Zero</li><li>Criação</li><li>Automação</li><li>Escala</li>
+            </ol>
           </article>
 
           <article class="card bento__b" data-card>
@@ -231,23 +230,29 @@
         <h2 class="h2">Não é sorte. <span class="hl">É estratégia.</span></h2>
       </div>
 
-      <div class="big-result" aria-label="Mais de 10 mil reais em comissões no terceiro mês">
-        <p class="big-result__n" aria-hidden="true">+R$ <span data-count="10">10</span> MIL</p>
-        <p class="big-result__t wrap" aria-hidden="true">em comissões no <span class="mark">3º mês.</span></p>
-      </div>
-
       <div class="wrap results__grid">
         <div class="results__copy">
+          <p class="big-result__n" aria-label="Mais de 10 mil reais">+R$ <span data-count="10">10</span> mil</p>
+          <p class="big-result__t">em comissões no <span class="hl">3º mês.</span></p>
           <p class="lead" data-reveal>Esse foi o resultado de uma operação construída com grupos de ofertas, tráfego pago e automação.</p>
           <p data-reveal>Agora você pode conhecer a estratégia utilizada para alcançar esse resultado.</p>
           <p class="disclaimer" data-reveal>Resultados individuais podem variar e não representam garantia de ganhos.</p>
         </div>
-        <div class="prints" aria-label="Prints reais de resultados">
-          <div class="asset print print--1" data-print>assets/print-resultado-01.png</div>
-          <div class="asset print print--2" data-print>assets/print-resultado-02.png</div>
-          <div class="asset print print--3" data-print>assets/print-resultado-03.png</div>
-          <div class="asset print print--4" data-print>assets/print-resultado-04.png</div>
-          <div class="asset print print--5" data-print>assets/print-resultado-05.png</div>
+        <div class="proof">
+          <figure class="device device--proof" data-parallax="-30">
+            <div class="device__screen"><img src="assets/resultados/ml-hoje.webp" alt="Painel de métricas do Mercado Livre: ganho estimado de R$ 202,24 em um dia" width="736" height="1600" loading="lazy"></div>
+            <img class="device__frame" src="assets/phone-frame.webp" alt="" width="856" height="1800">
+          </figure>
+          <figure class="shot shot--float" data-parallax="-70"><img src="assets/resultados/shopee-outubro.webp" alt="Painel da Shopee de outubro: R$ 5,8 mil de comissão estimada e R$ 75,4 mil em vendas" width="900" height="984" loading="lazy"></figure>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <p class="shots__label" data-reveal>Mais prints reais do painel de afiliado</p>
+        <div class="shots" tabindex="0" aria-label="Prints de resultados">
+          <figure class="shot" data-card><img src="assets/resultados/ml-90-dias.webp" alt="Mercado Livre, últimos 90 dias: ganho estimado de R$ 34.667,70" width="900" height="1189" loading="lazy"></figure>
+          <figure class="shot" data-card><img src="assets/resultados/shopee-abril.webp" alt="Shopee, abril: R$ 64,5 mil de comissão estimada e R$ 673,5 mil em vendas" width="900" height="492" loading="lazy"></figure>
+          <figure class="shot" data-card><img src="assets/resultados/ml-mes.webp" alt="Mercado Livre, mês atual: ganho estimado de R$ 2.553,67" width="900" height="1188" loading="lazy"></figure>
         </div>
       </div>
     </section>
@@ -274,8 +279,8 @@
               <circle class="clock__arc" cx="200" cy="200" r="196" stroke="#FF5A1F" stroke-width="2" stroke-dasharray="1232" stroke-dashoffset="820" stroke-linecap="round" transform="rotate(-90 200 200)"/>
             </svg>
           </div>
-          <div class="phone phone--solo" data-parallax="-40">
-            <div class="phone__screen">
+          <div class="device device--solo" data-parallax="-40">
+            <div class="device__screen">
               <div class="wa-head"><span class="wa-av">AD</span><div><b>Achadinhos do Dia</b><small>automação ativa <i class="live"></i></small></div></div>
               <div class="wa-body wa-body--feed">
                 <div class="msg" data-feed><span class="tag tag--shopee">Shopee</span><p class="msg__t">Luminária LED</p><p class="msg__p"><b>R$ 24,90</b></p><time>08:00</time></div>
@@ -285,6 +290,7 @@
                 <div class="msg" data-feed><span class="tag tag--shopee">Shopee</span><p class="msg__t">Capa para celular</p><p class="msg__p"><b>R$ 12,90</b></p><time>18:00</time></div>
               </div>
             </div>
+            <img class="device__frame" src="assets/phone-frame.webp" alt="" width="856" height="1800">
           </div>
           <div class="notif notif--c" data-parallax="-90"><span class="notif__dot"></span><div><small>Você estava offline</small><b>5 ofertas enviadas</b></div></div>
         </div>
@@ -302,10 +308,8 @@
         </header>
 
         <div class="offer__grid">
-          <div class="offer__mock" aria-hidden="true" data-parallax="-40">
-            <div class="asset offer__mock-1">assets/mockup-produto-asa.png</div>
-            <div class="asset offer__mock-2">assets/mockup-celular-aulas.png</div>
-          </div>
+          <img class="offer__obj offer__obj--bag" src="assets/3d/bag.webp" alt="" width="760" height="900" aria-hidden="true">
+          <img class="offer__obj offer__obj--coins" src="assets/3d/coins.webp" alt="" width="883" height="900" aria-hidden="true">
 
           <div class="price card" data-card>
             <p class="price__brand">Método <span>ASA</span></p>
