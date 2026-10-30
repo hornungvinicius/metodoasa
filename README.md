@@ -9,7 +9,7 @@ Página estática: `index.html` + `css/styles.css` + `js/main.js` (GSAP 3.12.5 v
 Para ver localmente: `python3 -m http.server` na raiz e abrir `http://localhost:8000`.
 
 ## Páginas
-- `index.html`: landing page.
+- `index.html`: landing page. Sem alegações de ganho (seção de resultados e prints de painel removidos em 30/10/2026).
 - `politica-de-privacidade.html` e `termos-de-uso.html`: textos genéricos em nome do Método ASA, sem CNPJ. Revise com um advogado e complete com os dados do responsável antes de escalar.
 - Aviso de cookies: guarda a escolha em `localStorage` (`asa-consent`), envia `consent update` do Google Consent Mode e os eventos `cookie_consent_granted` / `cookie_consent_denied` no `dataLayer`. Configure as tags do GTM (Meta, GA4, Ads) para respeitar o consentimento.
 

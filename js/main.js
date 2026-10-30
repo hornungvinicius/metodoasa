@@ -43,34 +43,6 @@
     });
   }
 
-  // Carrossel de prints: setas, barra de progresso e arraste nativo
-  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
-    const track = carousel.querySelector('.carousel__track');
-    const prev = carousel.querySelector('[data-prev]');
-    const next = carousel.querySelector('[data-next]');
-    const bar = carousel.parentElement.querySelector('.carousel__bar');
-    const step = () => {
-      const item = track.querySelector('.carousel__item');
-      return item ? item.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 16) : track.clientWidth;
-    };
-    const update = () => {
-      const max = track.scrollWidth - track.clientWidth;
-      const visible = track.clientWidth / track.scrollWidth;
-      const progress = max > 0 ? track.scrollLeft / max : 0;
-      if (bar) {
-        bar.style.setProperty('--bar-w', `${visible * 100}%`);
-        bar.style.setProperty('--bar-x', `${progress * (1 / visible - 1) * 100}%`);
-      }
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max - 2;
-    };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
-    next.addEventListener('click', () => track.scrollBy({ left: step() }));
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  });
-
   if (reduce) {
     root.classList.remove('motion');
     return;
@@ -126,17 +98,6 @@
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
-
-    // Contador do resultado
-    const counter = document.querySelector('[data-count]');
-    if (counter) {
-      const target = { v: 0 };
-      gsap.to(target, {
-        v: Number(counter.dataset.count), duration: 1.4, ease: 'power2.out',
-        onUpdate: () => { counter.textContent = Math.round(target.v); },
-        scrollTrigger: { trigger: counter, start: 'top 85%', once: true },
-      });
-    }
 
     // Feed automático: mensagens chegando em loop
     const feed = gsap.utils.toArray('[data-feed]');

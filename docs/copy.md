@@ -1,14 +1,11 @@
 # MÉTODO ASA — Copy da LP
 www.afiliadosemaparecer.com.br
 
-## 01. Primeira dobra — a promessa
-**Fature +R$300 por dia como afiliado Shopee e Mercado Livre no 1º mês.**
-A nova era dos afiliados começou (sem promessa de guru, é sério). É o jeito mais fácil e rápido de começar.
-Descubra como transformar grupos de WhatsApp em uma máquina de comissões, utilizando tráfego pago e automação.
-SEM APARECER • SEM SEGUIDORES • OFERTAS AUTOMÁTICAS
-**SUA MÁQUINA DE VENDAS ATIVA NO MESMO DIA.**
-Aprenda o passo a passo para colocar sua estrutura de afiliados em funcionamento desde o primeiro dia.
-[QUERO COMEÇAR AGORA]
+## 01. Primeira dobra
+**Aprenda a montar sua operação de afiliado na Shopee e no Mercado Livre.**
+Um treinamento online, passo a passo, sobre grupos de ofertas no WhatsApp, tráfego pago e automação.
+Para quem quer começar do zero como afiliado, sem precisar aparecer em vídeos.
+Compra segura pela Kiwify, com garantia de 7 dias. O pagamento é feito no checkout oficial da Kiwify. Não pedimos dados de cartão nesta página.
 
 ## 02. O que está incluso?
 **O ÚLTIMO TREINAMENTO DE AFILIADOS QUE VOCÊ VAI PRECISAR.**
@@ -37,12 +34,7 @@ Uma operação pensada para atrair compradores, divulgar ofertas diariamente e g
 [QUERO APRENDER O MÉTODO]
 
 ## 05. Resultados reais
-**NÃO É SORTE. É ESTRATÉGIA.**
-**+R$ 10 MIL EM COMISSÕES NO 1º MÊS.**
-Esse foi o resultado de uma operação construída com grupos de ofertas, tráfego pago e automação.
-Agora você pode conhecer a estratégia utilizada para alcançar esse resultado.
-[ESPAÇO PARA PRINTS REAIS DE RESULTADOS]
-Resultados individuais podem variar e não representam garantia de ganhos.
+Removida em 30/10/2026: sem alegações de ganho na página.
 
 ## 06. O diferencial
 **ENQUANTO VOCÊ FAZ OUTRAS COISAS, SUAS OFERTAS CONTINUAM SENDO ENVIADAS.**
