@@ -75,7 +75,7 @@ button { font: inherit; color: inherit; }
 
 /* ============ Tipografia ============ */
 .h1 {
-  font: 700 clamp(26px, 2.5vw, 36px)/1.16 var(--display);
+  font: 700 clamp(28px, 3vw, 42px)/1.14 var(--display);
   letter-spacing: -.025em;
   text-wrap: balance;
   margin-bottom: 20px;
@@ -752,7 +752,7 @@ button { font: inherit; color: inherit; }
   .nav { padding: 12px 0; }
   .wordmark { font-size: 18px; }
   .hero { padding: 100px 0 90px; }
-  .h1 { font-size: min(5.6vw, 30px); }
+  .h1 { font-size: clamp(23px, 7.2vw, 30px); }
   .lead { font-size: 17px; }
   .hero__visual { height: 500px; }
   .device.device--lock { width: 220px; margin-left: -110px; }
